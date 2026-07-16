@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes' name='viewport'/>
+  <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+  <meta content='blogger' name='generator'/>
+  <meta content='INDEX, FOLLOW' name='robots'/>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' name='description'/>
+  </b:if>
+  <link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+  <title><data:blog.pageTitle/></title>
+  <b:skin><![CDATA[
+/* =====================================================
+   PREMIUM BLOGGER THEME - Weight Loss Truth
+   Design: Glassmorphism / Modern Minimal / Premium
+   Font: Inter + Plus Jakarta Sans
+   ===================================================== */
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a26;
+  --bg-card-hover: #222230;
+  --text-primary: #f1f1f7;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b80;
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --accent-light: rgba(249, 115, 22, 0.12);
+  --accent-glow: rgba(249, 115, 22, 0.25);
+  --border: #2a2a3a;
+  --border-light: #333348;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.4);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Header / Navigation ─── */
+#header-wrapper {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+#header-wrapper.scrolled { background: rgba(10, 10, 15, 0.95); }
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 64px;
+}
+#logo h1, #logo h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.4rem; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), #fbbf24);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#logo a { text-decoration: none; color: inherit; }
+.header-nav { display: flex; align-items: center; gap: 8px; }
+.header-nav a {
+  color: var(--text-secondary); text-decoration: none;
+  font-size: 0.875rem; font-weight: 500;
+  padding: 8px 16px; border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.header-nav a:hover { color: var(--text-primary); background: var(--accent-light); }
+.search-toggle {
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-secondary); cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition); font-size: 1rem;
+}
+.search-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ─── Search Overlay ─── */
+.search-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+  z-index: 2000; display: none; align-items: center; justify-content: center;
+}
+.search-overlay.active { display: flex; }
+.search-overlay-inner { width: 100%; max-width: 600px; padding: 24px; }
+.search-overlay input {
+  width: 100%; padding: 20px 24px; font-size: 1.25rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); color: var(--text-primary);
+  outline: none; transition: var(--transition);
+}
+.search-overlay input:focus { border-color: var(--accent); }
+.search-close {
+  position: absolute; top: 24px; right: 24px;
+  background: none; border: none; color: var(--text-secondary);
+  font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+}
+.search-close:hover { color: var(--text-primary); }
+
+/* ─── Hero Banner ─── */
+.hero-banner {
+  margin-top: 64px; padding: 80px 24px 60px;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1a2e 50%, var(--bg-primary) 100%);
+  text-align: center; position: relative; overflow: hidden;
+}
+.hero-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, var(--accent-light) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(59,130,246,0.08) 0%, transparent 50%);
+  animation: heroGlow 8s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-5%, -5%); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.hero-banner h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+  line-height: 1.15; margin-bottom: 16px;
+}
+.hero-banner h1 span { background: linear-gradient(135deg, var(--accent), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-banner p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px; line-height: 1.7; }
+.hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px; border-radius: var(--radius-md);
+  font-weight: 600; font-size: 0.95rem; text-decoration: none;
+  transition: var(--transition); cursor: pointer; border: none;
+}
+.hero-btn-primary {
+  background: linear-gradient(135deg, var(--accent), #ea580c);
+  color: white; box-shadow: 0 4px 20px var(--accent-glow);
+}
+.hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--accent-glow); }
+.hero-btn-secondary {
+  background: var(--bg-card); color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.hero-btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+/* ─── Main Content ─── */
+.main-wrapper {
+  max-width: 1200px; margin: 0 auto; padding: 40px 24px;
+  display: grid; grid-template-columns: 1fr 320px; gap: 48px;
+}
+@media (max-width: 968px) { .main-wrapper { grid-template-columns: 1fr; } }
+
+/* ─── Blog Posts ─── */
+.blog-posts { min-width: 0; }
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem; font-weight: 700; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent);
+}
+.post { margin-bottom: 32px; }
+.post-outer { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+.post-outer:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: var(--shadow); }
+.post-thumbnail { width: 100%; height: 220px; object-fit: cover; display: block; }
+.post-inner { padding: 24px; }
+.post-category {
+  display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent); background: var(--accent-light); padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
+}
+.post-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.35rem; font-weight: 700; line-height: 1.3; margin-bottom: 8px;
+}
+.post-title a { color: var(--text-primary); text-decoration: none; transition: var(--transition); }
+.post-title a:hover { color: var(--accent); }
+.post-meta {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.post-meta span { display: flex; align-items: center; gap: 4px; }
+.post-snippet { color: var(--text-secondary); font-size: 0.925rem; line-height: 1.7; }
+.post-readmore {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; color: var(--accent); text-decoration: none;
+  font-weight: 600; font-size: 0.875rem; transition: var(--transition);
+}
+.post-readmore:hover { gap: 10px; }
+
+/* ─── Single Post Page ─── */
+.post-body { font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); }
+.post-body h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; line-height: 1.3;
+}
+.post-body h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px; line-height: 1.3;
+}
+.post-body p { margin-bottom: 16px; }
+.post-body img {
+  max-width: 100%; height: auto; border-radius: var(--radius-md);
+  margin: 24px 0; box-shadow: var(--shadow);
+}
+.post-body blockquote {
+  margin: 24px 0; padding: 20px 24px; background: var(--bg-secondary);
+  border-left: 4px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic; color: var(--text-secondary); font-size: 1.05rem;
+}
+.post-body ul, .post-body ol { margin: 16px 0; padding-left: 24px; }
+.post-body li { margin-bottom: 8px; }
+.post-body table {
+  width: 100%; border-collapse: collapse; margin: 24px 0;
+  background: var(--bg-secondary); border-radius: var(--radius-md); overflow: hidden;
+}
+.post-body th, .post-body td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+.post-body th { background: var(--bg-card); font-weight: 600; color: var(--accent); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.post-body td { color: var(--text-secondary); font-size: 0.925rem; }
+.post-body tr:last-child td { border-bottom: none; }
+.post-body strong { color: var(--text-primary); }
+.post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; transition: var(--transition); }
+.post-body a:hover { color: var(--accent-hover); }
+
+/* ─── Callouts ─── */
+.callout {
+  margin: 24px 0; padding: 20px 24px; border-radius: var(--radius-md);
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.callout.success { background: rgba(34,197,94,0.08); border-left: 4px solid var(--success); color: #86efac; }
+.callout.warning { background: rgba(245,158,11,0.08); border-left: 4px solid var(--warning); color: #fcd34d; }
+.callout.info { background: rgba(59,130,246,0.08); border-left: 4px solid #3b82f6; color: #93c5fd; }
+
+/* ─── TOC ─── */
+.toc {
+  background: var(--bg-secondary); border-radius: var(--radius-md);
+  padding: 24px; margin-bottom: 32px; border: 1px solid var(--border);
+}
+.toc h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+.toc ol { padding-left: 20px; }
+.toc li { margin-bottom: 6px; font-size: 0.9rem; }
+.toc a { color: var(--text-secondary); text-decoration: none; transition: var(--transition); }
+.toc a:hover { color: var(--accent); }
+
+/* ─── Sidebar ─── */
+.sidebar { position: sticky; top: 88px; align-self: start; }
+.sidebar-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+.sidebar-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem; font-weight: 700; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sidebar-title::before { content: ''; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; }
+
+/* ─── Newsletter ─── */
+.newsletter-box { text-align: center; }
+.newsletter-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.newsletter-box p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+.newsletter-form { display: flex; gap: 8px; }
+.newsletter-form input {
+  flex: 1; padding: 12px 16px; background: var(--bg-primary);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-primary); font-size: 0.9rem; outline: none;
+  transition: var(--transition);
+}
+.newsletter-form input:focus { border-color: var(--accent); }
+.newsletter-form button {
+  padding: 12px 20px; background: var(--accent); color: white;
+  border: none; border-radius: var(--radius-sm); font-weight: 600;
+  font-size: 0.875rem; cursor: pointer; transition: var(--transition);
+  white-space: nowrap;
+}
+.newsletter-form button:hover { background: var(--accent-hover); }
+
+/* ─── Popular Posts ─── */
+.popular-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.popular-item:last-child { border-bottom: none; }
+.popular-item img { width: 64px; height: 64px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
+.popular-item h4 { font-size: 0.875rem; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+.popular-item h4 a { color: var(--text-primary); text-decoration: none; transition: var(--transition); }
+.popular-item h4 a:hover { color: var(--accent); }
+.popular-item .popular-date { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ─── Footer ─── */
+#footer-wrapper {
+  background: var(--bg-secondary); border-top: 1px solid var(--border);
+  padding: 48px 24px 32px; margin-top: 48px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; }
+.footer-col h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); }
+.footer-col a { display: block; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; padding: 4px 0; transition: var(--transition); }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
+.footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
+.social-links { display: flex; gap: 12px; margin-top: 12px; justify-content: center; }
+.social-links a {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); text-decoration: none; transition: var(--transition);
+}
+.social-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* ─── Back to Top ─── */
+.back-to-top {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: white; border: none;
+  cursor: pointer; display: none; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px var(--accent-glow); transition: var(--transition);
+  font-size: 1.1rem;
+}
+.back-to-top.visible { display: flex; }
+.back-to-top:hover { transform: translateY(-3px); box-shadow: 0 6px 24px var(--accent-glow); }
+
+/* ─── Animations ─── */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .header-inner { padding: 0 16px; }
+  .header-nav { display: none; }
+  .hero-banner { padding: 60px 16px 40px; }
+  .hero-banner h1 { font-size: 1.75rem; }
+  .main-wrapper { padding: 24px 16px; gap: 32px; }
+  .sidebar { position: static; }
+  .newsletter-form { flex-direction: column; }
+  .post-thumbnail { height: 180px; }
+  .blog-posts { order: 2; }
+  .sidebar { order: 1; }
+}
+
+/* ─── Loading ─── */
+.blog-loading {
+  display: flex; align-items: center; justify-content: center;
+  padding: 80px 24px; color: var(--text-muted);
+}
+.blog-loading .spinner {
+  width: 32px; height: 32px; border: 3px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+  ]]></b:skin>
+
+  <b:template-skin>
+    <b:variable default='320px' name='sidebar.width'/>
+    <b:variable default='1200px' name='content.width'/>
+    <b:variable default='64px' name='header.height'/>
+  </b:template-skin>
+
+  <b:section id='header' maxwidgets='1' showaddelement='yes'>
+    <b:widget id='Header1' locked='true' title='Weight Loss Truth (Header)' type='Header' version='2'>
+      <b:widget-settings>
+        <b:widget-setting name='displayUrl'/>
+        <b:widget-setting name='displayHeight'>0</b:widget-setting>
+        <b:widget-setting name='sectionWidth'>100%</b:widget-setting>
+        <b:widget-setting name='useImage'>false</b:widget-setting>
+        <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+        <b:widget-setting name='shrinkToFit'>true</b:widget-setting>
+        <b:widget-setting name='displayWidth'>0</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='widget' variant='header'>
+        <div id='header-wrapper'>
+          <div class='header-inner'>
+            <div id='logo'>
+              <b:include name='title'/>
+            </div>
+            <nav class='header-nav'>
+              <a href='/'><i class='fas fa-home' style='margin-right:6px'></i>Home</a>
+              <a href='/search/label/review'><i class='fas fa-star' style='margin-right:6px'></i>Reviews</a>
+              <a href='/search/label/keto'><i class='fas fa-fire' style='margin-right:6px'></i>Keto</a>
+              <a href='/search/label/weight%20loss'><i class='fas fa-weight' style='margin-right:6px'></i>Weight Loss</a>
+              <a href='/p/about.html'><i class='fas fa-info-circle' style='margin-right:6px'></i>About</a>
+            </nav>
+            <button class='search-toggle' onclick='toggleSearch()' aria-label='Search'>
+              <i class='fas fa-search'></i>
+            </button>
+          </div>
+        </div>
+      </b:includable>
+    </b:widget>
+  </b:section>
+</head>
+
+<body>
+  <!-- Search Overlay -->
+  <div class='search-overlay' id='searchOverlay'>
+    <button class='search-close' onclick='toggleSearch()' aria-label='Close'>&#215;</button>
+    <div class='search-overlay-inner'>
+      <form action='/search' method='get'>
+        <input name='q' placeholder='Search articles...' type='text'/>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hero Banner (Homepage only) -->
+  <b:if cond='data:view.isHomepage'>
+    <div class='hero-banner'>
+      <div class='hero-content'>
+        <h1>Real <span>Weight Loss Truth</span> You Can Trust</h1>
+        <p>Honest reviews, evidence-based research, and real results — no BS, no fake claims. We test and share what actually works.</p>
+        <div class='hero-buttons'>
+          <a class='hero-btn hero-btn-primary' href='/search/label/review'>
+            <i class='fas fa-star'></i> Latest Reviews
+          </a>
+          <a class='hero-btn hero-btn-secondary' href='/search/label/keto'>
+            <i class='fas fa-fire'></i> Keto Guides
+          </a>
+        </div>
+      </div>
+    </div>
+  </b:if>
+
+  <!-- Main Content -->
+  <div class='main-wrapper'>
+    <main class='blog-posts'>
+      <b:section id='main' maxwidgets='1' showaddelement='yes'>
+        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+            <b:widget-setting name='showAuthor'>false</b:widget-setting>
+            <b:widget-setting name='showBlogTitle'>false</b:widget-setting>
+            <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+            <b:widget-setting name='showPostLabels'>true</b:widget-setting>
+            <b:widget-setting name='showLocation'>false</b:widget-setting>
+            <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+            <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+            <b:widget-setting name='style'>enclosed</b:widget-setting>
+            <b:widget-setting name='showPager'>true</b:widget-setting>
+          </b:widget-settings>
+
+          <!-- Featured Post -->
+          <b:includable id='featuredPost' variant='featuredPost'>
+            <b:if cond='data:view.isHomepage'>
+              <div class='featured-section'>
+                <h2 class='section-title'><i class='fas fa-star' style='color: var(--accent)'></i> Editor's Pick</h2>
+                <div class='post-outer' style='border-color: var(--accent); border-width: 2px;'>
+                  <b:if cond='data:post.featuredImage'>
+                    <img class='post-thumbnail' expr:src='data:post.featuredImage' expr:alt='data:post.title'/>
+                  </b:if>
+                  <div class='post-inner'>
+                    <span class='post-category'>Featured</span>
+                    <h2 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h2>
+                    <div class='post-meta'>
+                      <span><i class='far fa-calendar'></i> <data:post.date/></span>
+                      <span><i class='far fa-clock'></i> <data:post.readingTime/> min read</span>
+                    </div>
+                    <div class='post-snippet'><data:post.snippets.short/></div>
+                    <a class='post-readmore' expr:href='data:post.url'>Read Full Review <i class='fas fa-arrow-right'></i></a>
+                  </div>
+                </div>
+              </div>
+            </b:if>
+          </b:includable>
+
+          <!-- Main Post Loop -->
+          <b:includable id='main' variant='main'>
+            <b:if cond='data:view.isMultipleItems'>
+              <b:include name='feed'/>
+            </b:if>
+            <b:if cond='data:view.isSingleItem'>
+              <b:include name='post'/>
+            </b:if>
+          </b:includable>
+
+          <b:includable id='feed' variant='feed'>
+            <b:if cond='data:view.isHomepage'>
+              <b:if cond='data:posts[0]'>
+                <b:include name='featuredPost' data='{post: data:posts[0]}'/>
+              </b:if>
+              <h2 class='section-title' style='margin-top: 40px;'>
+                <i class='fas fa-newspaper' style='color: var(--accent)'></i> Latest Articles
+              </h2>
+            </b:if>
+            <div class='posts'>
+              <b:loop values='data:posts' var='post'>
+                <b:if cond='data:view.isHomepage and data:post.index == 0'>
+                  <b:continue/>
+                </b:if>
+                <article class='post'>
+                  <div class='post-outer fade-in'>
+                    <b:if cond='data:post.featuredImage'>
+                      <img class='post-thumbnail' expr:src='data:post.featuredImage' expr:alt='data:post.title' loading='lazy'/>
+                    </b:if>
+                    <div class='post-inner'>
+                      <b:if cond='data:post.labels'>
+                        <span class='post-category'>
+                          <b:loop values='data:post.labels' var='label' index='lIndex'>
+                            <b:if cond='data:lIndex == 0'><data:label.name/></b:if>
+                          </b:loop>
+                        </span>
+                      </b:if>
+                      <h2 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h2>
+                      <div class='post-meta'>
+                        <span><i class='far fa-calendar'></i> <data:post.date/></span>
+                        <span><i class='far fa-clock'></i> <data:post.readingTime/> min read</span>
+                        <span><i class='far fa-comment'></i> <data:post.comments.count/> comments</span>
+                      </div>
+                      <div class='post-snippet'><data:post.snippets.short/></div>
+                      <a class='post-readmore' expr:href='data:post.url'>
+                        Read Full Review <i class='fas fa-arrow-right'></i>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </b:loop>
+            </div>
+          </b:includable>
+
+          <!-- Single Post -->
+          <b:includable id='post' variant='post'>
+            <article class='post-outer'>
+              <b:if cond='data:post.featuredImage'>
+                <img class='post-thumbnail' expr:src='data:post.featuredImage' expr:alt='data:post.title'/>
+              </b:if>
+              <div class='post-inner'>
+                <b:if cond='data:post.labels'>
+                  <span class='post-category'>
+                    <b:loop values='data:post.labels' var='label' index='lIndex'>
+                      <b:if cond='data:lIndex == 0'><data:label.name/></b:if>
+                    </b:loop>
+                  </span>
+                </b:if>
+                <h1 class='post-title'><data:post.title/></h1>
+                <div class='post-meta'>
+                  <span><i class='far fa-user'></i> <data:post.author.name/></span>
+                  <span><i class='far fa-calendar'></i> Updated: <data:post.date/></span>
+                  <span><i class='far fa-clock'></i> <data:post.readingTime/> min read</span>
+                </div>
+                <div class='post-body'>
+                  <data:post.body/>
+                </div>
+              </div>
+            </article>
+            <div style='margin-top: 32px;'>
+              <b:include name='comments' data='post'/>
+            </div>
+          </b:includable>
+
+          <b:includable id='comments' variant='comments'>
+            <div class='post-outer'>
+              <div class='post-inner'>
+                <h2 class='section-title'><i class='far fa-comments' style='color: var(--accent)'></i> Comments</h2>
+                <b:include name='commentsWidget'/>
+              </div>
+            </div>
+          </b:includable>
+
+          <b:includable id='commentsWidget' variant='commentsWidget'>
+            <b:if cond='data:post.allowComments'>
+              <div id='comments'>
+                <b:if cond='data:post.comments.count > 0'>
+                  <div class='comments-list'>
+                    <b:loop values='data:post.comments' var='comment'>
+                      <div style='padding: 16px 0; border-bottom: 1px solid var(--border);'>
+                        <strong style='color: var(--accent)'><data:comment.author.name/></strong>
+                        <span style='color: var(--text-muted); font-size: 0.8rem; margin-left: 8px;'><data:comment.date/></span>
+                        <p style='color: var(--text-secondary); margin-top: 8px; font-size: 0.925rem;'><data:comment.body/></p>
+                      </div>
+                    </b:loop>
+                  </div>
+                </b:if>
+                <div style='margin-top: 16px;'>
+                  <a expr:href='data:post.addCommentUrl' style='color: var(--accent); font-weight: 600; text-decoration: none;'>Add a Comment</a>
+                </div>
+              </div>
+            </b:if>
+          </b:includable>
+
+        </b:widget>
+      </b:section>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class='sidebar'>
+      <b:section id='sidebar' maxwidgets='3' showaddelement='yes'>
+        <!-- About Widget -->
+        <b:widget id='AboutWidget' locked='false' title='About' type='Text' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='content'>
+              <div class='sidebar-widget' style='text-align: center;'>
+                <div style='width: 80px; height: 80px; border-radius: 50%; background: var(--accent-light); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--accent);'>
+                  <i class='fas fa-user'></i>
+                </div>
+                <h3 style='font-weight: 700; margin-bottom: 8px;'>Weight Loss Truth</h3>
+                <p style='font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;'>I test weight loss products and share honest reviews — the good, the bad, and the ugly. No fake claims. Just real results.</p>
+              </div>
+            </b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='widget'>
+            <div class='sidebar-widget'><data:content/></div>
+          </b:includable>
+        </b:widget>
+
+        <!-- Popular Posts -->
+        <b:widget id='PopularPosts' locked='false' title='Trending Now' type='PopularPosts' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+            <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+            <b:widget-setting name='showSnippets'>false</b:widget-setting>
+            <b:widget-setting name='timeRange'>LAST_WEEK</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='widget'>
+            <div class='sidebar-widget'>
+              <h3 class='sidebar-title'><i class='fas fa-fire' style='color: var(--accent)'></i> Trending Now</h3>
+              <b:include name='content'/>
+            </div>
+          </b:includable>
+        </b:widget>
+
+        <!-- Newsletter -->
+        <b:widget id='Newsletter' locked='false' title='Newsletter' type='Text' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='content'>
+              <div class='newsletter-box'>
+                <h3>Get Honest Reviews</h3>
+                <p>Join 5,000+ readers. No spam, unsubscribe anytime.</p>
+                <div class='newsletter-form'>
+                  <input placeholder='Your email...' type='email'/>
+                  <button>Subscribe</button>
+                </div>
+              </div>
+            </b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='widget'>
+            <div class='sidebar-widget'><data:content/></div>
+          </b:includable>
+        </b:widget>
+
+        <!-- Labels -->
+        <b:widget id='Labels' locked='false' title='Categories' type='Label' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+            <b:widget-setting name='display'>LIST</b:widget-setting>
+            <b:widget-setting name='selectedLabelsList'/>
+            <b:widget-setting name='showType'>ALL</b:widget-setting>
+            <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='widget'>
+            <div class='sidebar-widget'>
+              <h3 class='sidebar-title'><i class='fas fa-folder' style='color: var(--accent)'></i> Categories</h3>
+              <b:include name='content'/>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer id='footer-wrapper'>
+    <div class='footer-inner'>
+      <div class='footer-grid'>
+        <div class='footer-col'>
+          <h4><i class='fas fa-fire' style='color: var(--accent); margin-right: 6px;'></i> Weight Loss Truth</h4>
+          <p style='color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;'>Real reviews, real results. We test weight loss products so you don't have to guess what works.</p>
+          <div class='social-links'>
+            <a href='#' aria-label='Twitter'><i class='fab fa-twitter'></i></a>
+            <a href='#' aria-label='Pinterest'><i class='fab fa-pinterest'></i></a>
+            <a href='#' aria-label='YouTube'><i class='fab fa-youtube'></i></a>
+            <a href='#' aria-label='Instagram'><i class='fab fa-instagram'></i></a>
+          </div>
+        </div>
+        <div class='footer-col'>
+          <h4>Quick Links</h4>
+          <a href='/'>Home</a>
+          <a href='/search/label/review'>Latest Reviews</a>
+          <a href='/search/label/keto'>Keto Guides</a>
+          <a href='/search/label/weight%20loss'>Weight Loss</a>
+          <a href='/p/about.html'>About Us</a>
+        </div>
+        <div class='footer-col'>
+          <h4>Top Reviews</h4>
+          <b:section id='footer-links' showaddelement='yes'/>
+        </div>
+        <div class='footer-col'>
+          <h4>Legal</h4>
+          <a href='/p/privacy-policy.html'>Privacy Policy</a>
+          <a href='/p/terms.html'>Terms of Service</a>
+          <a href='/p/affiliate-disclosure.html'>Affiliate Disclosure</a>
+          <a href='mailto:contact@weightlosstruth.com'>Contact Us</a>
+        </div>
+      </div>
+      <div class='footer-bottom'>
+        <p>© <data:blog.title/>. All rights reserved. | <a href='/' style='color: var(--accent); text-decoration: none;'>Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class='back-to-top' id='backToTop' onclick='window.scrollTo({top:0,behavior:"smooth"})' aria-label='Back to top'>
+    <i class='fas fa-arrow-up'></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+  // ─── Search Toggle ───
+  window.toggleSearch = function() {
+    const overlay = document.getElementById('searchOverlay')
+    overlay.classList.toggle('active')
+    if (overlay.classList.contains('active')) {
+      setTimeout(() => overlay.querySelector('input').focus(), 100)
+    }
+  }
+
+  // ─── Header Scroll Effect ───
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('#header-wrapper')
+    const backToTop = document.getElementById('backToTop')
+
+    window.addEventListener('scroll', function() {
+      // Header
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled')
+      } else {
+        header.classList.remove('scrolled')
+      }
+
+      // Back to top
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible')
+      } else {
+        backToTop.classList.remove('visible')
+      }
+    })
+
+    // ─── Fade In Animation ───
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+
+    // ─── Search Keyboard Shortcut ───
+    document.addEventListener('keydown', function(e) {
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        e.preventDefault()
+        window.toggleSearch()
+      }
+      if (e.key === 'Escape') {
+        const overlay = document.getElementById('searchOverlay')
+        if (overlay.classList.contains('active')) {
+          window.toggleSearch()
+        }
+      }
+    })
+  })
+  </script>
+</body>
+</html>

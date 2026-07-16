@@ -1,0 +1,12 @@
+node_modules/
+.next/
+*.db
+*.db-journal
+.env
+.env.local
+blogger-tokens.json
+gmail-tokens.json
+pinterest-tokens.json
+.pinterest-session/
+.browser-session/
+articles-progress.json

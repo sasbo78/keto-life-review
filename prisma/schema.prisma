@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Nugget {
+  id            String   @id @default(cuid())
+  keyword       String
+  product       String
+  niche         String
+  searchVolume  Int      @default(0)
+  competition   Int      @default(0)
+  commission    Float    @default(0)
+  monthlyEarnings Float  @default(0)
+  intent        String   @default("buy")
+  platform      String   @default("pinterest")
+  status        String   @default("active")
+  source        String   @default("manual")
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  contents      ContentAsset[]
+}
+
+model ContentAsset {
+  id          String   @id @default(cuid())
+  nuggetId    String
+  type        String
+  title       String
+  content     String
+  description String?
+  tags        String   @default("[]")
+  platform    String   @default("pinterest")
+  status      String   @default("draft")
+  mediaUrl    String?
+  linkUrl     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  nugget      Nugget   @relation(fields: [nuggetId], references: [id], onDelete: Cascade)
+}
+
+model Earning {
+  id        String   @id @default(cuid())
+  source    String
+  amount    Float
+  date      DateTime @default(now())
+  note      String?
+  createdAt DateTime @default(now())
+}
+
+model Account {
+  id        String   @id @default(cuid())
+  platform  String
+  label     String
+  username  String?
+  isActive  Boolean  @default(true)
+  proxy     String?
+  earnings  Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
