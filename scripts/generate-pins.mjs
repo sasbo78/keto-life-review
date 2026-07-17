@@ -5,9 +5,9 @@ import { fileURLToPath } from 'url'
 import { chromium } from 'playwright'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const ARTICLES_DIR = 'C:\\Users\\mohel\\Desktop\\Best Keto Coffee'
-const PINS_DIR = 'C:\\Users\\mohel\\Desktop\\Best Keto Coffee\\generated-pins'
-const CAMPAIGN_DIR = 'C:\\Users\\mohel\\Desktop\\Best Keto Coffee\\campaign'
+const ARTICLES_DIR = path.join(__dirname, '..', 'src', 'data', 'articles')
+const PINS_DIR = path.join(__dirname, '..', 'public', 'generated-pins')
+const CAMPAIGN_DIR = path.join(__dirname, '..', 'public', 'generated-pins', 'campaign')
 const AFFILIATE_LINK = 'https://amzn.to/4gIP345'
 
 const UNSPlASH_IMAGES = [
