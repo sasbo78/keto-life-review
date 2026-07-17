@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Traffic Monster — Profit Engine",
   description: "AI-Powered Affiliate Profit Engine. Discover golden keywords, auto-generate content, and scale your earnings.",
   icons: { icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg" },
+  verification: { google: "kJgFJDWv--Rvmivh638UOBZkRqN3Cd9Bd97MJ8QdThk" },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
