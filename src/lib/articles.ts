@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const ARTICLES_DIR = 'C:\\Users\\mohel\\Desktop\\Best Keto Coffee'
+const ARTICLES_DIR = path.join(process.cwd(), 'src', 'data', 'articles')
 const AFFILIATE_LINK = process.env.AFFILIATE_LINK || 'https://amzn.to/4hcHEKn'
 
 export interface Article {
