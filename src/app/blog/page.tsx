@@ -19,12 +19,21 @@ export default function BlogPage() {
             Honest, research-backed reviews of the best keto coffee products. 
             We test every product for 30 days so you don't have to.
           </p>
-          <div className="flex gap-4 mt-8">
+          <div className="flex gap-3 mt-8 flex-wrap">
             <a href={process.env.AFFILIATE_LINK || 'https://amzn.to/4hcHEKn'}
                target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center px-6 py-3 bg-amber-500 hover:bg-amber-400 text-gray-900 font-semibold rounded-xl transition-colors">
               Best Keto Coffee on Amazon →
             </a>
+            <Link href="/guide" className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-xl transition-colors border border-gray-700">
+              Guides & Tips
+            </Link>
+            <Link href="/best" className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-xl transition-colors border border-gray-700">
+              Top Picks
+            </Link>
+            <Link href="/compare" className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-xl transition-colors border border-gray-700">
+              Comparisons
+            </Link>
           </div>
         </div>
       </div>

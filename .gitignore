@@ -10,3 +10,6 @@ pinterest-tokens.json
 .pinterest-session/
 .browser-session/
 articles-progress.json
+
+.vercel
+.env*

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getArticleBySlug, getRelatedArticles, getAllArticles } from '@/lib/articles'
 import { Metadata } from 'next'
+import { EmailCapture } from '@/components/EmailCapture'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -77,6 +78,9 @@ export default async function ArticlePage({ params }: Props) {
             Check Best Price on Amazon →
           </a>
         </div>
+
+        {/* Email Capture */}
+        <EmailCapture source={`article-${article.slug}`} />
 
         {/* Related Articles */}
         {related.length > 0 && (
