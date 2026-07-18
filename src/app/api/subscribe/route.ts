@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const SUBSCRIBERS_FILE = process.cwd() + '/subscribers.json'
+const WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL
 
 export async function POST(request: Request) {
   try {
@@ -10,28 +10,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
 
-    const fs = await import('fs/promises')
-    let subscribers: Array<{ email: string; source: string; date: string }> = []
-
-    try {
-      const data = await fs.readFile(SUBSCRIBERS_FILE, 'utf-8')
-      subscribers = JSON.parse(data)
-    } catch {}
-
-    if (subscribers.some(s => s.email === email)) {
-      return NextResponse.json({ message: 'Already subscribed' })
+    if (!WEBHOOK_URL) {
+      return NextResponse.json({ error: 'Storage not configured' }, { status: 500 })
     }
 
-    subscribers.push({
-      email,
-      source: source || 'unknown',
-      date: new Date().toISOString(),
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source: source || 'unknown', date: new Date().toISOString() }),
     })
 
-    await fs.writeFile(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2))
+    if (!res.ok) throw new Error('Webhook failed')
 
     return NextResponse.json({ message: 'Subscribed successfully' })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Internal error' }, { status: 500 })
   }
 }
