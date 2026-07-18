@@ -1,4 +1,10 @@
 import { NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_APP_PASS },
+})
 
 export async function POST(request: Request) {
   try {
@@ -7,10 +13,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
     const entry = { email, source: source || 'unknown', date: new Date().toISOString() }
-    console.log('[SUBSCRIBE]', JSON.stringify(entry))
-    if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
-      fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entry),
+    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASS) {
+      transporter.sendMail({
+        from: process.env.GMAIL_USER, to: process.env.GMAIL_USER,
+        subject: `New Keto Life Subscriber: ${email}`,
+        text: `Email: ${email}\nSource: ${entry.source}\nDate: ${entry.date}`,
       }).catch(() => {})
     }
     return NextResponse.json({ message: 'Subscribed successfully' })
